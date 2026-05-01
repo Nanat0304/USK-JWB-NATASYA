@@ -1,0 +1,15 @@
+INI BUAT LOGIN NYA :
+
+nyalain xampp dulu 
+
+klo mau msk versi admiin pke 
+
+http://localhost/bookstore_natasya/ADMIN/dashboard.php
+
+admin
+123
+
+
+klo mau msk versi user http://localhost/bookstore_natasya/USER/
+user : natasya 
+pw:123
