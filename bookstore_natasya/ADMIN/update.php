@@ -1,5 +1,10 @@
 <?php
  include 'konek.php';
+
+ $nama_buku = $_GET['nama_buku'];
+ $sqlGet = "SELECT * FROM crud WHERE nama_buku='$nama_buku'";
+ $queryGet = mysqli_query($conn, $sqlGet);
+ $data = mysqli_fetch_array($queryGet);
 ?>
 
 
@@ -15,13 +20,13 @@
   <div class="w-50 mx-auto border p-3 mt-5 "> 
    
     
-  <form action="add.php" method="POST">
+  <form action="update.php" method="POST">
     <label for="nama_buku">NAMA BUKU</label>
-    <input type="text" id="nama_buku" name="nama_buku" class="form-control" required>
+    <input type="text" id="nama_buku" name="nama_buku" value="<?php echo "$data[nama_buku]";?>" class="form-control" readonly required>
     
     <label for="kategori">Kategori</label>
-    <select name="kategori" id="kategori" class="form-select" required>
-      <option>Pilih Kategori</option>
+    <select name="kategori" id="kategori" value="<?php echo "$data[kategori]";?>" class="form-select" required>
+      <option value="<?php echo "$data[kategori]";?>">Pilih Kategori</option>
       <option value="horor">kategori Horor</option>
       <option value="motivasi">kategori Motivasi</option>
       <option value="novel">kategori Novel</option>
@@ -29,15 +34,15 @@
     <br>
     <br>
      <label for="nama_buku">PENULIS</label>
-    <input type="text" id="penulis" name="penulis"  class="form-control" required>
+    <input type="text" id="penulis" name="penulis" value="<?php echo "$data[penulis]";?>" class="form-control" required>
     <br>
 
      <label for="nama_buku">DESKRIPSI</label>
-    <input type="text" id="deskripsi" name="deskripsi"  class="form-control" required>
+    <input type="text" id="deskripsi" name="deskripsi" value="<?php echo "$data[deskripsi]";?>"  class="form-control" required>
 <br>
    
      <label for="nama_buku">HARGA</label>
-    <input type="text" id="harga" name="harga"  class="form-control" required>
+    <input type="text" id="harga" name="harga" value="<?php echo "$data[harga]";?>" class="form-control" required>
 
     <input  class="btn btn-success mt-3" type="submit" name="tambah" value="TAMBAH DATA ">
 
@@ -69,43 +74,14 @@
     $kategoriSelect = 'kategori horor';
   }
 
-  $sqlGet = "SELECT * FROM crud WHERE nama_buku='$nama_buku'";
-  $queryGet = mysqli_query($conn, $sqlGet);
-  $cek = mysqli_num_rows($queryGet);
+  $sqlUpdate = "UPDATE crud 
+                SET kategori='$kategori', penulis='$penulis', deskripsi='$deskripsi',  harga='$harga'
+                WHERE nama_buku='$nama_buku'";
 
-    $sqlInsert = "INSERT INTO crud(nama_buku,kategori,penulis,deskripsi,harga)
-                  VALUES ('$nama_buku','$kategori','$penulis','$deskripsi','$harga')";  
-                  
+    $queryUpdate = mysqli_query($conn, $sqlUpdate);     
 
-   $queryInsert = mysqli_query($conn, $sqlInsert);
-
-   if (isset($sqlInsert) &&  $cek <= 0 && $queryInsert) {
-    echo " 
-      <div class='alert alert-success'>DATA BERHASIL DITAMBAHKAN <a href='CRUD.php'>LIHAT DATA</a></div>
-
-     ";
-   } else if($cek >= 1 ){
-    echo"
-      <div class='alert alert-danger'>DATA GAGAL DITAMBAHKAN <a href='CRUD.php'>LIHAT DATA</a></div>
-
-    ";
-   }
-  
-
-
-   header("location: CRUD.php");
+    header("location: CRUD.php");
   }
-
-
-  
-
-
-
-
-  
-
-
- 
   ?>
 
 </body>

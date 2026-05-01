@@ -14,7 +14,7 @@
     <div class="container mt-5">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
-                <h2 class="h4 mb-0">🛒 Daftar Orderan User</h2>
+                <h2 class="h4 mb-0">Daftar Orderan User</h2>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

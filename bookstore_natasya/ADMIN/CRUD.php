@@ -12,86 +12,65 @@
 <title>CRUD</title>
 </head>
 <body>
+
+
   <div class="container mt-4">
     <a href="add.php" class="btn btn-primary btn-md mb-3">Tambah Data</a>
     <table class="table table-striped table-hover table-bordered mt-5">
  <thead class="table-dark">
-  <th>NAMA BUKU</th>
+  <th>NOMOR</th>
+  <th>KATEGORI</th>
   <th>PENULIS</th>
   <th>DESKRIPSI</th>
   <th>HARGA</th>
-  <th>ALAMAT</th>
-  <th>NO TELFON</th>
-  <th>Aksi</th>
+  <th>AKSI</th>
+  
  </thead>
 
 <?php
 //buat data CRUD NYA BIAR  BISA NONGOL
-  $sqlGet = 'SELECT * FROM crud';
+  $sqlGet = "SELECT * FROM crud";
   $query = mysqli_query($conn, $sqlGet);
 
   while ($data = mysqli_fetch_array($query)){
   echo "
   <tbody>
-     <tr>
-     <td>$data[nama_buku]</td>
+ <tr>
+
+  <td>$data[nama_buku]</td>
+  <td>$data[kategori]</td>
   <td>$data[penulis]</td>
   <td>$data[deskripsi]</td>
   <td>$data[harga]</td>
-  <td>$data[alamat]</td>
-  <td>$data[No_tlp]</td>
-  
- <div class='row'>
+   <td>
+
+
+    <div class='row'>
+
       <div class='col d-flex justify-content-center'>
-              <a href='' class='btn btn-sm btn-warning'>UPDATE</a>
+               <a href='update.php?nama_buku=$data[nama_buku]' class='btn btn-warning'>UPDATE</a>
       </div>
 
        <div class='col d-flex justify-content-center'>
-              <a href='' class='btn btn-sm btn-warning'>DELETE</a>
-      </div>
-
-      <div class='col d-flex justify-content-center'>
-              <a href='' class='btn btn-sm btn-danger'>DELETE</a>
+               <a href='delete.php?nama_buku=$data[nama_buku]'
+   onclick='return confirm('Yakin mau hapus?')'
+   class='btn btn-danger'>DELETE</a>
       </div>
 
     </div>
-    <td>
-  </tr>
- </tbody>
 
+
+ </tr>
+</tbody>
+ 
   ";
   
   }
   
 ?>
 
-<tbody>
-     <tr>
-     <td>GADIS KRETEK</td>
-  <td>RATIH KUSUMA</td>
-  <td>Lorem ipsum dolor sit amet.</td>
-  <td>Rp 45.000</td>
-  <td>Pulgebang cakung</td>
-  <td>0897379233</td>
+ 
 
-  <td>
-
-   
-   <div class='row'>
-      <div class='col d-flex justify-content-center'>
-              <a href='' class='btn btn-sm btn-warning'>UPDATE</a>
-      </div>
-
-       <div class='col d-flex justify-content-center'>
-              <a href='' class='btn btn-sm btn-danger'>DELETE</a>
-      </div>
-
-    </div>
-
-
-
-  </tr>
- </tbody>
 </table>
   </div>
 </body>
